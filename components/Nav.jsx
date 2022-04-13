@@ -1,9 +1,16 @@
 import { useState } from "react";
 import CartIcon from "./Carticon";
+import Link from "next/link";
+import { useUser } from "@auth0/nextjs-auth0";
+import Image from "next/image";
+import Dropdown from "./Userdropdown";
 
 const Navigation = () => {
   const [sliderPosition, setSliderPosition] = useState(0);
-
+  const { user } = useUser();
+  const myLoader = ({ src, width, quality }) => {
+    return `${src}?w=${width}&q=${quality || 75}`;
+  };
   return (
     <nav className="text-xl">
       <div className="sm:hidden">
@@ -94,7 +101,7 @@ const Navigation = () => {
         </div>
 
         <div
-          className={`bg-blue-400 w-fit fixed top-0 left-0 h-full pt-7 z-20 ${
+          className={`bg-blue-400 w-fit fixed top-0 left-0 h-full pt-4 z-20 ${
             sliderPosition ? `translate-x-0` : `-translate-x-full`
           } transition-all ease-out`}
         >
@@ -115,6 +122,22 @@ const Navigation = () => {
               />
             </svg>
           </div>
+
+          {user && (
+            <div className="py-6">
+              <div className="flex justify-center align-middle items-center">
+                <Image
+                  loader={myLoader}
+                  src={user.picture}
+                  alt="img"
+                  width={50}
+                  height={50}
+                  className="rounded-full"
+                />
+              </div>
+              <h2 className="text-center text-sm font-semibold">{user.name}</h2>
+            </div>
+          )}
           <ul className="flex flex-col space-y-4 pt-5">
             <li className="flex px-9">
               <svg
@@ -145,27 +168,72 @@ const Navigation = () => {
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
-                />
-              </svg>
-              Login
-            </li>
-            <li className="flex px-9">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
                   d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z"
                 />
               </svg>
               Cart
+            </li>
+            {user && (
+              <li className="flex px-9">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="h-6 w-6 mr-2"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
+                  />
+                </svg>
+                Orders
+              </li>
+            )}
+            <li className="flex px-9">
+              {user ? (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  <Link href={"/api/auth/logout"}>
+                    <a>Log out</a>
+                  </Link>
+                </>
+              ) : (
+                <>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6 mr-2"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M11 16l-4-4m0 0l4-4m-4 4h14m-5 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h7a3 3 0 013 3v1"
+                    />
+                  </svg>
+                  <Link href={"/api/auth/login"}>
+                    <a>Log in</a>
+                  </Link>
+                </>
+              )}
             </li>
             <li className="flex px-9">
               <svg
@@ -264,9 +332,15 @@ const Navigation = () => {
           </li>
           <li className="flex space-x-8 justify-center items-center align-middle">
             <CartIcon />
-            <button className="bg-blue-500 px-4 py-1 rounded-md font-semibold text-white hover:bg-blue-600">
-              Log in
-            </button>
+            {user ? (
+              <Dropdown user={user} />
+            ) : (
+              <Link href="/api/auth/login">
+                <a className="bg-blue-500 px-4 py-1 rounded-md font-semibold text-white hover:bg-blue-600 cursor-pointer">
+                  Log in
+                </a>
+              </Link>
+            )}
           </li>
         </ul>
 
