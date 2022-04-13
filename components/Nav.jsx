@@ -188,7 +188,7 @@ const Navigation = () => {
         </div>
       </div>
 
-      <div className="hidden sm:block">
+      <div className="hidden sm:block lg:mt-14 xl:mt-20">
         <ul className="flex justify-between align-middle items-center mt-5">
           <li className="cursor-pointer">
             <svg
@@ -255,6 +255,13 @@ const Navigation = () => {
               </defs>
             </svg>
           </li>
+          <li className="hidden lg:block">
+            <input
+              type="text"
+              placeholder="Search"
+              className="border-2 border-gray-400 rounded-md px-3 py-1 w-96 focus:outline-blue-500 xl:w-[600px]"
+            />
+          </li>
           <li className="flex space-x-8 justify-center items-center align-middle">
             <CartIcon />
             <button className="bg-blue-500 px-4 py-1 rounded-md font-semibold text-white hover:bg-blue-600">
@@ -267,16 +274,16 @@ const Navigation = () => {
           <input
             type="text"
             placeholder="Search"
-            className="border-2 border-gray-400 rounded-md px-3 py-1 mt-10 w-80"
+            className="border-2 border-gray-400 rounded-md px-3 py-1 mt-10 w-80 md:w-96 lg:hidden"
           />
         </div>
 
         <div className="pt-10">
-          <ul className="flex space-x-9 text-gray-500 justify-center align-middle items-center">
-            <li>Home</li>
-            <li>Man</li>
-            <li>Women</li>
-            <li>Kids</li>
+          <ul className="flex space-x-9 text-gray-500 justify-center align-middle items-center lg:space-x-15">
+            <li className="cursor-pointer hover:text-gray-600">Home</li>
+            <li className="cursor-pointer hover:text-gray-600">Man</li>
+            <li className="cursor-pointer hover:text-gray-600">Women</li>
+            <li className="cursor-pointer hover:text-gray-600">Kids</li>
           </ul>
         </div>
       </div>
