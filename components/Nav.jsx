@@ -94,7 +94,7 @@ const Navigation = () => {
         </div>
 
         <div
-          className={`bg-blue-400 w-fit fixed top-0 left-0 h-full pt-7 ${
+          className={`bg-blue-400 w-fit fixed top-0 left-0 h-full pt-7 z-20 ${
             sliderPosition ? `translate-x-0` : `-translate-x-full`
           } transition-all ease-out`}
         >
