@@ -13,7 +13,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <div className="pt-14 pb-10">
+      <div className="pt-16 pb-10">
         <Slider />
       </div>
 
