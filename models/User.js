@@ -1,8 +1,12 @@
 import mongoose from "mongoose";
 
 const UserSchema = new mongoose.Schema({
-  name: String,
-  email: String,
+  name: { type: String },
+  email: { type: String, required: true },
+  addres1: String,
+  addres2: String,
+  landMark: String,
+  pinCode: String,
 });
 
 module.exports = mongoose.model.User || mongoose.model("User", UserSchema);

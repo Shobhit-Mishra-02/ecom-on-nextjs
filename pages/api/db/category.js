@@ -1,12 +1,11 @@
 import dbConnect from "../../../lib/dbConnect";
-import User from "../../../models/User";
+import Category from "../../../models/Category";
 
 const handler = async (req, res) => {
   const { method } = req;
-
   await dbConnect();
 
-  req.status(200).json({ message: "This is handle the users" });
+  res.status(200).json({ message: "this will handler the categories" });
 };
 
 export default handler;
