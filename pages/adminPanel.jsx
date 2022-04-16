@@ -82,6 +82,7 @@ const AdminPanel = ({ content }) => {
 
   useEffect(() => {
     requestForProdById();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [prodID]);
 
   //   the content bellow will delete the product

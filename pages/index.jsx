@@ -1,7 +1,6 @@
 import Head from "next/head";
 import Slider from "../components/Slider";
 import Card from "../components/Card";
-// import Example from "../components/Userdropdown";
 import Dropdown from "../components/Userdropdown";
 
 export default function Home() {
