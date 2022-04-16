@@ -5,7 +5,12 @@ const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();
 
-  res.status(200).json({ message: "this will handler the categories" });
+  switch (method) {
+    case "GET":
+      const data = await Category.find({}).exec();
+      res.status(200).json(data);
+      break;
+  }
 };
 
 export default handler;

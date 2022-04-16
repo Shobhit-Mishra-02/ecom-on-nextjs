@@ -5,7 +5,12 @@ const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();
 
-  res.status(200).json({ messsage: "we need to work on this" });
+  switch (method) {
+    case "GET":
+      const data = await Prod.find({}, { __v: 0 }).exec();
+      res.status(200).json(data);
+      break;
+  }
 };
 
 export default handler;
