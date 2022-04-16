@@ -4,10 +4,12 @@ import Link from "next/link";
 import { useUser } from "@auth0/nextjs-auth0";
 import Image from "next/image";
 import Dropdown from "./Userdropdown";
+import { useRouter } from "next/router";
 
 const Navigation = () => {
   const [sliderPosition, setSliderPosition] = useState(0);
   const { user } = useUser();
+  const router = useRouter();
   const myLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
@@ -35,6 +37,7 @@ const Navigation = () => {
             viewBox="0 0 175 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            onClick={() => router.push("/")}
           >
             <g clipPath="url(#clip0_22_434)">
               <path
@@ -139,7 +142,7 @@ const Navigation = () => {
             </div>
           )}
           <ul className="flex flex-col space-y-4 pt-5">
-            <li className="flex px-9">
+            <li className="flex px-9" onClick={() => router.push("/")}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
@@ -265,6 +268,7 @@ const Navigation = () => {
               viewBox="0 0 175 24"
               fill="none"
               xmlns="http://www.w3.org/2000/svg"
+              onClick={() => router.push("/")}
             >
               <g clipPath="url(#clip0_22_434)">
                 <path
@@ -354,7 +358,12 @@ const Navigation = () => {
 
         <div className="pt-10">
           <ul className="flex space-x-9 text-gray-500 justify-center align-middle items-center lg:space-x-15">
-            <li className="cursor-pointer hover:text-gray-600">Home</li>
+            <li
+              className="cursor-pointer hover:text-gray-600"
+              onClick={() => router.push("/")}
+            >
+              Home
+            </li>
             <li className="cursor-pointer hover:text-gray-600">Man</li>
             <li className="cursor-pointer hover:text-gray-600">Women</li>
             <li className="cursor-pointer hover:text-gray-600">Kids</li>
