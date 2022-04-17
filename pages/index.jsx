@@ -1,9 +1,10 @@
 import Head from "next/head";
 import Slider from "../components/Slider";
 import Card from "../components/Card";
-import Dropdown from "../components/Userdropdown";
+import CardSection from "../components/CardSection";
+// import Dropdown from "../components/Userdropdown";
 
-export default function Home() {
+export default function Home({ content }) {
   return (
     <div>
       <Head>
@@ -16,22 +17,18 @@ export default function Home() {
         <Slider />
       </div>
 
-      <div className="pt-16">
-        <h2 className="text-center text-4xl font-semibold">Man fashion</h2>
-        <div className="py-6 flex flex-wrap justify-center align-middle items-center">
-          <Card />
-          <Card />
-          <Card />
-        </div>
-      </div>
-      <div className="pt-16">
-        <h2 className="text-center text-4xl font-semibold">Man fashion</h2>
-        <div className="py-6 flex flex-wrap justify-center align-middle items-center">
-          <Card />
-          <Card />
-          <Card />
-        </div>
-      </div>
+      {content.map((item) => (
+        <CardSection key={item._id} id={item._id} name={item.categoryName} />
+      ))}
     </div>
   );
+}
+
+export async function getServerSideProps() {
+  const data = await fetch("http://localhost:3000/api/db/category");
+  const content = await data.json();
+
+  return {
+    props: { content },
+  };
 }
