@@ -2,10 +2,28 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { useEffect } from "react";
+import { RadioGroup } from "@headlessui/react";
 
 export default function Productview() {
   const router = useRouter();
   const { id } = router.query;
+
+  // states for managing radio buttons
+  const [size, setSize] = useState("S");
+  const [sizeStyles, setSizeStyles] = useState({
+    XXL: 0,
+    XS: 0,
+    S: 1,
+    LG: 0,
+    XL: 0,
+  });
+
+  const [color, setColor] = useState("gray");
+  const [colorStyles, setColorStyles] = useState({
+    gray: 1,
+    white: 0,
+    pink: 0,
+  });
 
   const [prod, setProd] = useState({});
   const [loading, setStatus] = useState(1);
@@ -19,6 +37,7 @@ export default function Productview() {
 
   useEffect(() => {
     requestForProd();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
@@ -45,34 +64,172 @@ export default function Productview() {
               <h2 className="text-xl">Colors</h2>
 
               <div className="flex space-x-1 flex-wrap">
-                <div className="w-10 h-10 rounded-full bg-gray-600 border-2 border-blue-500"></div>
-                <div className="w-10 h-10 rounded-full bg-white border-2 border-gray-500"></div>
-                <div className="w-10 h-10 rounded-full bg-pink-300 border-2 border-gray-500"></div>
+                <div
+                  id="gray"
+                  className={
+                    colorStyles["gray"]
+                      ? "w-10 h-10 rounded-full bg-gray-500 border-2 border-blue-500 cursor-pointer"
+                      : "w-10 h-10 rounded-full bg-gray-500 border-2 border-gray-500 cursor-pointer"
+                  }
+                  onClick={(e) => {
+                    setColor(e.target.id);
+                    setColorStyles({
+                      ...colorStyles,
+                      gray: 1,
+                      white: 0,
+                      pink: 0,
+                    });
+                  }}
+                ></div>
+                <div
+                  id="white"
+                  className={
+                    colorStyles["white"]
+                      ? "w-10 h-10 rounded-full bg-white border-2 border-blue-500 cursor-pointer"
+                      : "w-10 h-10 rounded-full bg-white border-2 border-gray-500 cursor-pointer"
+                  }
+                  onClick={(e) => {
+                    setColor(e.target.id);
+                    setColorStyles({
+                      ...colorStyles,
+                      gray: 0,
+                      white: 1,
+                      pink: 0,
+                    });
+                  }}
+                ></div>
+                <div
+                  id="pink"
+                  className={
+                    colorStyles["pink"]
+                      ? "w-10 h-10 rounded-full bg-pink-500 border-2 border-blue-500 cursor-pointer"
+                      : "w-10 h-10 rounded-full bg-pink-500 border-2 border-gray-500 cursor-pointer"
+                  }
+                  onClick={(e) => {
+                    setColor(e.target.id);
+                    setColorStyles({
+                      ...colorStyles,
+                      gray: 0,
+                      white: 0,
+                      pink: 1,
+                    });
+                  }}
+                ></div>
               </div>
             </div>
             <div>
               <h2 className="text-xl">Size</h2>
               <div className="flex space-x-1 flex-wrap">
-                <button className="border-2 border-gray-500 rounded-md px-2 py-1">
+                <button
+                  id="XXL"
+                  className={
+                    sizeStyles["XXL"]
+                      ? "border-2 border-blue-500 bg-blue-500 text-white rounded-md px-2 py-1"
+                      : "border-2 border-gray-500 rounded-md px-2 py-1"
+                  }
+                  onClick={(e) => {
+                    setSize(e.target.id),
+                      setSizeStyles({
+                        ...sizeStyles,
+                        XXL: 1,
+                        XS: 0,
+                        S: 0,
+                        LG: 0,
+                        XL: 0,
+                      });
+                  }}
+                >
                   XXL
                 </button>
-                <button className="border-2 border-gray-500 rounded-md px-2 py-1">
+                <button
+                  id="XS"
+                  className={
+                    sizeStyles["XS"]
+                      ? "border-2 border-blue-500 bg-blue-500 text-white rounded-md px-2 py-1"
+                      : "border-2 border-gray-500 rounded-md px-2 py-1"
+                  }
+                  onClick={(e) => {
+                    setSize(e.target.id),
+                      setSizeStyles({
+                        ...sizeStyles,
+                        XXL: 0,
+                        XS: 1,
+                        S: 0,
+                        LG: 0,
+                        XL: 0,
+                      });
+                  }}
+                >
                   XS
                 </button>
-                <button className="border-2 border-gray-500 rounded-md px-2 py-1">
+                <button
+                  id="S"
+                  className={
+                    sizeStyles["S"]
+                      ? "border-2 border-blue-500 bg-blue-500 text-white rounded-md px-2 py-1"
+                      : "border-2 border-gray-500 rounded-md px-2 py-1"
+                  }
+                  onClick={(e) => {
+                    setSize(e.target.id),
+                      setSizeStyles({
+                        ...sizeStyles,
+                        XXL: 0,
+                        XS: 0,
+                        S: 1,
+                        LG: 0,
+                        XL: 0,
+                      });
+                  }}
+                >
                   S
                 </button>
-                <button className="border-2 border-gray-500 rounded-md px-2 py-1">
+                <button
+                  id="LG"
+                  className={
+                    sizeStyles["LG"]
+                      ? "border-2 border-blue-500 bg-blue-500 text-white rounded-md px-2 py-1"
+                      : "border-2 border-gray-500 rounded-md px-2 py-1"
+                  }
+                  onClick={(e) => {
+                    setSize(e.target.id),
+                      setSizeStyles({
+                        ...sizeStyles,
+                        XXL: 0,
+                        XS: 0,
+                        S: 0,
+                        LG: 1,
+                        XL: 0,
+                      });
+                  }}
+                >
                   LG
                 </button>
-                <button className="border-2 border-gray-500 rounded-md px-2 py-1">
+                <button
+                  id="XL"
+                  className={
+                    sizeStyles["XL"]
+                      ? "border-2 border-blue-500 bg-blue-500 text-white rounded-md px-2 py-1"
+                      : "border-2 border-gray-500 rounded-md px-2 py-1"
+                  }
+                  onClick={(e) => {
+                    setSize(e.target.id),
+                      setSizeStyles({
+                        ...sizeStyles,
+                        XXL: 0,
+                        XS: 0,
+                        S: 0,
+                        LG: 0,
+                        XL: 1,
+                      });
+                  }}
+                >
                   XL
                 </button>
               </div>
             </div>
 
             <button className="bg-blue-500 px-4 py-1 rounded-md font-semibold text-white hover:bg-blue-600 my-9 w-full">
-              Buy now
+              Add to cart
             </button>
 
             <div>
