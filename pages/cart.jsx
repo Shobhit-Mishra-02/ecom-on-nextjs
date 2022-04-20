@@ -71,6 +71,22 @@ const Cart = ({ user }) => {
     requestToCartProd();
   };
 
+  // This will delete the product from cart by Id
+  const requestToDeleteProd = async (id) => {
+    const deleteProd = await fetch("/api/db/getCartProd", {
+      method: "DELETE",
+      body: JSON.stringify({ id }),
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    console.log(deleteProd);
+
+    requestToCartProd();
+  };
+
   return (
     <>
       {cartProd.length ? (
@@ -128,7 +144,10 @@ const Cart = ({ user }) => {
                     </div>
 
                     <div>
-                      <button className="text-blue-500 border-2 border-blue-500 rounded-md px-2 py-1 hover:bg-blue-500 hover:text-white w-full">
+                      <button
+                        className="text-red-500 border-2 border-red-500 rounded-md px-2 py-1 hover:bg-red-500 hover:text-white w-full"
+                        onClick={() => requestToDeleteProd(item._id)}
+                      >
                         Remove
                       </button>
                     </div>

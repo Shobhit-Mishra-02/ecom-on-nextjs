@@ -27,6 +27,12 @@ const handler = async (req, res) => {
 
       res.status(200).json(updateQuan);
       break;
+
+    case "DELETE":
+      const deleteProd = await Cart.findByIdAndDelete(req.body.id).exec();
+
+      res.status(200).json(deleteProd);
+      break;
   }
 };
 

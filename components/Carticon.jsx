@@ -1,4 +1,8 @@
+import { useRouter } from "next/router";
+
 const CartIcon = () => {
+  const router = useRouter();
+
   return (
     <div className="w-fit p-1 relative cursor-pointer">
       <svg
@@ -8,6 +12,7 @@ const CartIcon = () => {
         viewBox="0 0 24 24"
         stroke="currentColor"
         strokeWidth={2}
+        onClick={() => router.push("/cart")}
       >
         <path
           strokeLinecap="round"

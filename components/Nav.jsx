@@ -159,7 +159,7 @@ const Navigation = () => {
               </svg>
               Home
             </li>
-            <li className="flex px-9">
+            <li className="flex px-9" onClick={() => router.push("/cart")}>
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
