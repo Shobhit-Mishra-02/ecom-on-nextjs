@@ -16,7 +16,16 @@ const handler = async (req, res) => {
       res.status(200).json(data);
       break;
 
-    default:
+    //This route will update the quantity of the no. of cart products by one
+    case "PUT":
+      const { id, quan } = req.body;
+      const updateQuan = await Cart.findByIdAndUpdate(id, {
+        $set: {
+          quantity: quan,
+        },
+      }).exec();
+
+      res.status(200).json(updateQuan);
       break;
   }
 };

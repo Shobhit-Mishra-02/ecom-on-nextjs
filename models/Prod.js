@@ -10,4 +10,9 @@ const ProdSchema = new mongoose.Schema({
   category: { type: mongoose.Schema.Types.ObjectId, ref: "Category" },
 });
 
+ProdSchema.index({
+  productName: "text",
+  productBrand: "text",
+});
+
 module.exports = mongoose.models.Prod || mongoose.model("Prod", ProdSchema);

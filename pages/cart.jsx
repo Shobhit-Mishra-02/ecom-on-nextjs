@@ -37,12 +37,38 @@ const Cart = ({ user }) => {
   };
 
   // This will make request to update the quantity value in the mongodb
-  const reuestToUpdateProd = async (id, quan, status) => {
+  const requestToUpdateProd = async (id, quan, status) => {
     if (status) {
       //This will increment the quantity by one
+      quan += 1;
+      const toIncrement = await fetch("/api/db/getCartProd", {
+        method: "PUT",
+        body: JSON.stringify({ id, quan }),
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
+      const json = await toIncrement.json();
+      console.log(json);
     } else {
       //This will decrement the quantity by one
+      if (quan != 1) {
+        quan -= 1;
+        const toDecrement = await fetch("/api/db/getCartProd", {
+          method: "PUT",
+          body: JSON.stringify({ id, quan }),
+          headers: {
+            "Content-Type": "application/json",
+            // 'Content-Type': 'application/x-www-form-urlencoded',
+          },
+        });
+        const json = await toDecrement.json();
+        console.log(json);
+      }
     }
+
+    requestToCartProd();
   };
 
   return (
@@ -78,9 +104,27 @@ const Cart = ({ user }) => {
                     </div>
 
                     <div className="flex space-x-2 justify-center align-middle items-center w-fit mt-3 mb-3">
-                      <PlusIcon className="text-gray-500 w-4 h-4 cursor-pointer" />{" "}
+                      <PlusIcon
+                        className="text-gray-500 w-4 h-4 cursor-pointer"
+                        onClick={() =>
+                          requestToUpdateProd(
+                            item._id,
+                            parseInt(item.quantity),
+                            1
+                          )
+                        }
+                      />{" "}
                       <span className="">{item.quantity}</span>{" "}
-                      <MinusIcon className="text-gray-500 w-4 h-4 cursor-pointer" />
+                      <MinusIcon
+                        className="text-gray-500 w-4 h-4 cursor-pointer"
+                        onClick={() =>
+                          requestToUpdateProd(
+                            item._id,
+                            parseInt(item.quantity),
+                            0
+                          )
+                        }
+                      />
                     </div>
 
                     <div>
