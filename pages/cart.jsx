@@ -2,13 +2,17 @@
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
+import { useContext } from "react";
+import cartStatus from "../components/context";
 
 const Cart = ({ user }) => {
   const [cartProd, setCartProd] = useState([]);
   const [subTotal, setSubTotal] = useState(1);
+  const [status, setStatus] = useContext(cartStatus);
 
   useEffect(() => {
     requestToCartProd();
+    setStatus(0);
   }, []);
 
   // here I will make a request to the mongodb to get the cart products of a particular user

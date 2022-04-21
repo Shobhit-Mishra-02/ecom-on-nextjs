@@ -2,9 +2,12 @@
 import { useState } from "react";
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { useUser } from "@auth0/nextjs-auth0";
+import { useContext } from "react";
+import cartStatus from "../../components/context";
 
 export default function Productview({ content }) {
   const { user } = useUser();
+  const [status, setStatus] = useContext(cartStatus);
 
   // states for managing radio buttons
   const [size, setSize] = useState("S");
@@ -256,7 +259,10 @@ export default function Productview({ content }) {
 
           <button
             className="bg-blue-500 px-4 py-1 rounded-md font-semibold text-white hover:bg-blue-600 my-5 w-full"
-            onClick={() => addToCart()}
+            onClick={() => {
+              addToCart();
+              setStatus(status + 1);
+            }}
           >
             Add to cart
           </button>
