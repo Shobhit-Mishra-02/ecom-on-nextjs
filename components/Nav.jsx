@@ -10,9 +10,20 @@ const Navigation = () => {
   const [sliderPosition, setSliderPosition] = useState(0);
   const { user } = useUser();
   const router = useRouter();
+  const [search, setSearch] = useState("");
+
   const myLoader = ({ src, width, quality }) => {
     return `${src}?w=${width}&q=${quality || 75}`;
   };
+
+  const onSearch = () => {
+    // console.log("search", search);
+    if (search.length) {
+      const content = search.replace(" ", "%20");
+      router.push(`/search/${content}`);
+    }
+  };
+
   return (
     <nav className="text-xl">
       <div className="sm:hidden">
@@ -100,6 +111,12 @@ const Navigation = () => {
             type="text"
             placeholder="Search"
             className="border-2 border-gray-400 rounded-md px-3 py-1 mt-8 w-72"
+            onChange={(e) => {
+              setSearch(e.target.value);
+              // onSearch();
+            }}
+            value={search}
+            onInput={() => onSearch()}
           />
         </div>
 
@@ -332,6 +349,12 @@ const Navigation = () => {
               type="text"
               placeholder="Search"
               className="border-2 border-gray-400 rounded-md px-3 py-1 w-96 focus:outline-blue-500 xl:w-[600px]"
+              onChange={(e) => {
+                setSearch(e.target.value);
+                // onSearch();
+              }}
+              value={search}
+              onInput={() => onSearch()}
             />
           </li>
           <li className="flex space-x-8 justify-center items-center align-middle">
@@ -353,6 +376,12 @@ const Navigation = () => {
             type="text"
             placeholder="Search"
             className="border-2 border-gray-400 rounded-md px-3 py-1 mt-10 w-80 md:w-96 lg:hidden"
+            onChange={(e) => {
+              setSearch(e.target.value);
+              // onSearch();
+            }}
+            value={search}
+            onInput={() => onSearch()}
           />
         </div>
 

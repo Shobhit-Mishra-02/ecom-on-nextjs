@@ -14,10 +14,7 @@ const handler = async (req, res) => {
         },
         { __v: 0 }
       ).exec();
-      res.status(200).json({
-        message: "request for search",
-        data,
-      });
+      res.status(200).json(data);
       break;
   }
 };
