@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
@@ -107,7 +108,11 @@ const Cart = ({ user }) => {
                   key={item._id}
                   className="m-1 rounded-md shadow-md shadow-gray-500"
                 >
-                  <div className="bg-gray-500 w-[250px] h-[250px] rounded-md"></div>
+                  <img
+                    src={`/uploads/${item.product.productImage}`}
+                    alt="image"
+                    className=" w-[250px] h-[250px] rounded-md"
+                  ></img>
 
                   <div className="p-1">
                     <div className="flex justify-between">
