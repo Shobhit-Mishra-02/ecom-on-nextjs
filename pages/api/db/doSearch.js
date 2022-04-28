@@ -8,12 +8,17 @@ const handler = async (req, res) => {
 
   switch (method) {
     case "POST":
-      const data = await Prod.find(
-        {
-          $text: { $search: req.body.search },
-        },
-        { __v: 0 }
-      ).exec();
+      // const searchText = req.body.search;
+      // const data = await Prod.find(
+      //   {
+      //     $text: { $search: req.body.search },
+      //   },
+      //   { __v: 0 }
+      // ).exec();
+      // res.status(200).json(data);
+      const data = await Prod.find({
+        productName: { $regex: req.body.search, $options: "i" },
+      });
       res.status(200).json(data);
       break;
   }
