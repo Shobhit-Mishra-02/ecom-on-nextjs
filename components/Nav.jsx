@@ -278,7 +278,7 @@ const Navigation = () => {
 
       <div className="hidden sm:block lg:mt-14 xl:mt-20">
         <ul className="flex justify-between align-middle items-center mt-5">
-          <li className="cursor-pointer">
+          <li className="cursor-pointer px-2">
             <svg
               width="175"
               height="24"

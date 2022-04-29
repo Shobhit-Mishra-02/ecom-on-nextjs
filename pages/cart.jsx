@@ -117,7 +117,9 @@ const Cart = ({ user }) => {
                   <div className="p-1">
                     <div className="flex justify-between">
                       <div>
-                        <h2 className="text-xl ">{item.product.productName}</h2>
+                        <h2 className="text-xl w-40 ">
+                          {item.product.productName}
+                        </h2>
                         <h2 className="text-sm text-gray-500">{item.color}</h2>
                         <h2 className="text-sm text-gray-500">{item.size}</h2>
                       </div>
