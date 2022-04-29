@@ -29,7 +29,7 @@ const Cart = ({ user }) => {
       },
     });
     const json = await data.json();
-    console.log(json);
+    // console.log(json);
     setCartProd(json);
 
     let temp = 0;
@@ -92,6 +92,49 @@ const Cart = ({ user }) => {
     requestToCartProd();
   };
 
+  //this will clear the cart of a particular user
+  const requestToClearCart = async () => {
+    const data = await fetch("api/db/clearCart", {
+      method: "POST",
+      body: JSON.stringify({ email: user.email }),
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+    const json = await data.json();
+
+    console.log(json);
+    requestToCartProd();
+  };
+
+  // this will confirm the order
+  const confirmOrder = async () => {
+    console.log("clicked");
+    let products = [];
+    cartProd.forEach((element) => {
+      products.push(element.product._id);
+    });
+
+    const data = await fetch("/api/db/makeOrder", {
+      method: "POST",
+      body: JSON.stringify({
+        email: user.email,
+        totalAmount: parseInt(subTotal) + 2 + 2,
+        products,
+      }),
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+
+    const json = await data.json();
+
+    console.log(json);
+    requestToClearCart();
+  };
+
   return (
     <>
       {cartProd.length ? (
@@ -117,7 +160,7 @@ const Cart = ({ user }) => {
                   <div className="p-1">
                     <div className="flex justify-between">
                       <div>
-                        <h2 className="text-xl w-40 ">
+                        <h2 className="text-xl w-40 h-10 overflow-hidden ">
                           {item.product.productName}
                         </h2>
                         <h2 className="text-sm text-gray-500">{item.color}</h2>
@@ -189,7 +232,10 @@ const Cart = ({ user }) => {
                 <h2>${subTotal + 2 + 2}</h2>
               </div>
 
-              <button className="px-2 py-1 text-white bg-blue-500 rounded-md w-full">
+              <button
+                className="px-2 py-1 text-white bg-blue-500 rounded-md w-full"
+                onClick={() => confirmOrder()}
+              >
                 Confirm order
               </button>
             </div>
