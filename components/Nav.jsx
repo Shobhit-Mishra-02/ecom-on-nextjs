@@ -159,7 +159,10 @@ const Navigation = () => {
             </div>
           )}
           <ul className="flex flex-col space-y-4 pt-5">
-            <li className="flex px-9" onClick={() => router.push("/")}>
+            <li
+              className="flex justify-start align-middle items-center px-9"
+              onClick={() => router.push("/")}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
@@ -176,7 +179,10 @@ const Navigation = () => {
               </svg>
               Home
             </li>
-            <li className="flex px-9" onClick={() => router.push("/cart")}>
+            <li
+              className="flex px-9 justify-start align-middle items-center"
+              onClick={() => router.push("/cart")}
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"
@@ -194,7 +200,7 @@ const Navigation = () => {
               Cart
             </li>
             {user && (
-              <li className="flex px-9">
+              <li className="flex px-9 justify-start align-middle items-center">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-6 w-6 mr-2"
@@ -209,10 +215,12 @@ const Navigation = () => {
                     d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"
                   />
                 </svg>
-                Orders
+                <Link href={"/order"}>
+                  <a>Orders</a>
+                </Link>
               </li>
             )}
-            <li className="flex px-9">
+            <li className="flex px-9 justify-start align-middle items-center">
               {user ? (
                 <>
                   <svg
@@ -255,7 +263,7 @@ const Navigation = () => {
                 </>
               )}
             </li>
-            <li className="flex px-9">
+            <li className="flex px-9 justify-start align-middle items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 className="h-6 w-6 mr-2"

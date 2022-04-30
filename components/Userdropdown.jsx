@@ -38,12 +38,11 @@ const Dropdown = ({ user }) => {
           </a>
         </Menu.Item>
         <Menu.Item>
-          <a
-            href="#"
-            className="hover:bg-gray-700 hover:text-white pl-2 flex  align-middle items-center "
-          >
-            <ClipboardListIcon className="w-6 h-6 mr-2" /> Orders
-          </a>
+          <Link href="/order">
+            <a className="hover:bg-gray-700 hover:text-white pl-2 flex  align-middle items-center ">
+              <ClipboardListIcon className="w-6 h-6 mr-2" /> Orders
+            </a>
+          </Link>
         </Menu.Item>
         <Menu.Item>
           <Link href="/api/auth/logout">
