@@ -1,7 +1,14 @@
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
+import { useRouter } from "next/router";
 
 const Card = ({ title, price, brand, image, id }) => {
+  const router = useRouter();
+
+  const addToCart = (id) => {
+    router.push(`/productview/${id}`);
+  };
+
   return (
     <div className="w-[300px] rounded-md shadow-md shadow-gray-400 m-1 lg:m-3">
       <img
@@ -23,7 +30,10 @@ const Card = ({ title, price, brand, image, id }) => {
         <h2 className="text-xl font-semibold">$ {price}</h2>
       </div>
       <div className="pt-4 px-1 py-1">
-        <button className="border-2 border-blue-500 px-4 py-1 rounded-md font-semibold text-blue-500 hover:bg-blue-600 hover:text-white w-full">
+        <button
+          className="border-2 border-blue-500 px-4 py-1 rounded-md font-semibold text-blue-500 hover:bg-blue-600 hover:text-white w-full"
+          onClick={() => addToCart(id)}
+        >
           Add to cart
         </button>
       </div>

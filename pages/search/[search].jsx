@@ -10,7 +10,7 @@ const SearchSection = ({ content }) => {
   // title, price, brand, image, id
 
   return (
-    <div className="flex flex-wrap justify-center align-middle items-center">
+    <div className="flex flex-wrap justify-center align-middle items-center pt-20">
       {content.map((item) => (
         <Card
           key={item._id}
