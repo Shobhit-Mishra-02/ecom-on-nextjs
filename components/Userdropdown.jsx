@@ -29,13 +29,12 @@ const Dropdown = ({ user }) => {
 
       <Menu.Items className="absolute z-20 bg-gray-300 w-40 text-gray-700 rounded-md flex flex-col top-14 left-6 space-y-2">
         <Menu.Item>
-          <a
-            href="#"
-            className="hover:bg-gray-700 hover:text-white pl-2 py-1 rounded-t-md flex align-middle items-center"
-          >
-            <IdentificationIcon className="w-6 h-6 mr-2" />
-            Profile
-          </a>
+          <Link href={"/profile"}>
+            <a className="hover:bg-gray-700 hover:text-white pl-2 py-1 rounded-t-md flex align-middle items-center">
+              <IdentificationIcon className="w-6 h-6 mr-2" />
+              Profile
+            </a>
+          </Link>
         </Menu.Item>
         <Menu.Item>
           <Link href="/order">

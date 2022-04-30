@@ -5,6 +5,7 @@ import { useUser } from "@auth0/nextjs-auth0";
 import Image from "next/image";
 import Dropdown from "./Userdropdown";
 import { useRouter } from "next/router";
+import { IdentificationIcon } from "@heroicons/react/outline";
 
 const Navigation = () => {
   const [sliderPosition, setSliderPosition] = useState(0);
@@ -121,7 +122,7 @@ const Navigation = () => {
         </div>
 
         <div
-          className={`bg-blue-400 w-fit fixed top-0 left-0 h-full pt-4 z-20 ${
+          className={`bg-blue-400 w-fit fixed top-0 left-0 h-full pt-4 z-20 px-8 ${
             sliderPosition ? `translate-x-0` : `-translate-x-full`
           } transition-all ease-out`}
         >
@@ -264,21 +265,8 @@ const Navigation = () => {
               )}
             </li>
             <li className="flex px-9 justify-start align-middle items-center">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                className="h-6 w-6 mr-2"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"
-                />
-              </svg>
-              Collections
+              <IdentificationIcon className="mr-2 h-6 w-6" />
+              Profile
             </li>
           </ul>
         </div>

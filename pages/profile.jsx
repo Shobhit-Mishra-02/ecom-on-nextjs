@@ -1,29 +1,87 @@
-const userProfile = () => {
+/* eslint-disable @next/next/no-img-element */
+import { useState } from "react";
+import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+
+const userProfile = ({ user }) => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const [details, setDetails] = useState({
+    userFirstName: user.name.split(" ")[0],
+    userLastName: user.name.split(" ")[1],
+    userEmail: user.email,
+    userAddress: "",
+    userCountry: "",
+    userCity: "",
+    userPinCode: "",
+    userPhoneNumber: "",
+  });
+  // console.log(user);
+  const onSubmit = async () => {
+    if (
+      details.userAddress.length &&
+      details.userCountry.length &&
+      details.userCity.length &&
+      details.userPinCode.length &&
+      details.userPhoneNumber.length
+    ) {
+      const data = await fetch("/api/db/addUserProfile", {
+        method: "POST",
+        body: JSON.stringify(details),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const json = await data.json();
+      console.log(json);
+    } else {
+      console.log("not allowed");
+    }
+  };
+
   return (
     <div className="pt-10 sm:pt-14 md:pt-16 xl:pt-24 text-gray-600">
       <div className="">
         {/* image section with name  */}
         <div className="sm:flex sm:flex-row sm:space-x-4 xl:justify-start xl:text-xl xl:space-x-10">
-          <div className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full bg-gray-400 m-auto xl:m-2"></div>
+          <img
+            src={user.picture}
+            alt="img"
+            className="w-[100px] h-[100px] md:w-[150px] md:h-[150px] rounded-full  m-auto xl:m-2"
+          ></img>
 
           <div className="sm:w-[300px] md:w-[380px] xl:space-y-4">
             <div className="flex flex-col space-y-2">
               <label htmlFor="firstName">First name</label>
               <input
-                className="border-2 rounded-md px-2 py-1 border-gray-400"
+                className="border-2 rounded-md px-2 py-1 border-gray-400 bg-gray-100"
                 type="text"
                 name="firstName"
                 placeholder="first name"
+                value={details.userFirstName}
+                onChange={(e) =>
+                  setDetails({
+                    ...details,
+                    userFirstName: e.target.value,
+                  })
+                }
+                readOnly
               />
             </div>
 
             <div className="flex flex-col space-y-2">
               <label htmlFor="lastName">Last name</label>
               <input
-                className="border-2 rounded-md px-2 py-1 border-gray-400"
+                className="border-2 rounded-md px-2 py-1 border-gray-400 bg-gray-100"
                 type="text"
                 name="lastName"
                 placeholder="second name"
+                value={details.userLastName}
+                onChange={(e) =>
+                  setDetails({
+                    ...details,
+                    userLastName: e.target.value,
+                  })
+                }
+                readOnly
               />
             </div>
           </div>
@@ -34,10 +92,18 @@ const userProfile = () => {
           <div className="flex flex-col space-y-2 lg:w-[600px]">
             <label htmlFor="email">Email</label>
             <input
-              className="border-2 rounded-md px-2 py-1 border-gray-400"
+              className="border-2 rounded-md px-2 py-1 border-gray-400 bg-gray-100"
               type="email"
               name="email"
               placeholder="enter email"
+              value={details.userEmail}
+              onChange={(e) =>
+                setDetails({
+                  ...details,
+                  userEmail: e.target.value,
+                })
+              }
+              readOnly
             />
           </div>
           <div className="flex flex-col space-y-2 sm:w-[300px]">
@@ -47,6 +113,13 @@ const userProfile = () => {
               type="text"
               name="country"
               placeholder="enter country"
+              value={details.userCountry}
+              onChange={(e) =>
+                setDetails({
+                  ...details,
+                  userCountry: e.target.value,
+                })
+              }
             />
           </div>
           <div className="flex flex-col space-y-2 xl:pr-36">
@@ -56,6 +129,29 @@ const userProfile = () => {
               type="text"
               name="address"
               placeholder="enter address"
+              value={details.userAddress}
+              onChange={(e) =>
+                setDetails({
+                  ...details,
+                  userAddress: e.target.value,
+                })
+              }
+            />
+          </div>
+          <div className="flex flex-col space-y-2 sm:w-[300px] xl:w-[400px]">
+            <label htmlFor="phNumber">Phone number</label>
+            <input
+              className="border-2 rounded-md px-2 py-1 border-gray-400"
+              type="tel"
+              name="phNumber"
+              placeholder="ph no."
+              value={details.userPhoneNumber}
+              onChange={(e) =>
+                setDetails({
+                  ...details,
+                  userPhoneNumber: e.target.value,
+                })
+              }
             />
           </div>
 
@@ -67,6 +163,13 @@ const userProfile = () => {
                 type="text"
                 name="city"
                 placeholder="enter city"
+                value={details.userCity}
+                onChange={(e) =>
+                  setDetails({
+                    ...details,
+                    userCity: e.target.value,
+                  })
+                }
               />
             </div>
 
@@ -77,6 +180,13 @@ const userProfile = () => {
                 type="text"
                 name="pincode"
                 placeholder="enter pincode"
+                value={details.userPinCode}
+                onChange={(e) =>
+                  setDetails({
+                    ...details,
+                    userPinCode: e.target.value,
+                  })
+                }
               />
             </div>
           </div>
@@ -84,7 +194,10 @@ const userProfile = () => {
 
         {/* submit button  */}
         <div className="flex justify-center align-middle items-center py-6 md:py-12">
-          <button className="px-4 py-1 text-xl border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-md">
+          <button
+            className="px-4 py-1 text-xl border-2 border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white rounded-md"
+            onClick={onSubmit}
+          >
             Submit
           </button>
         </div>
@@ -92,5 +205,7 @@ const userProfile = () => {
     </div>
   );
 };
+
+export const getServerSideProps = withPageAuthRequired();
 
 export default userProfile;
