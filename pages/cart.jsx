@@ -6,6 +6,7 @@ import { useEffect, useState } from "react";
 import { useContext } from "react";
 import cartStatus from "../components/context";
 import { userProfileStatus } from "../components/context";
+import { ToastContainer, toast } from "react-toastify";
 
 const Cart = ({ user }) => {
   const [cartProd, setCartProd] = useState([]);
@@ -17,6 +18,10 @@ const Cart = ({ user }) => {
     requestToCartProd();
     setStatus(0);
   }, []);
+
+  const placedOrder = () => {
+    toast.success("Order has been placed!");
+  };
 
   // here I will make a request to the mongodb to get the cart products of a particular user
   const requestToCartProd = async () => {
@@ -136,6 +141,7 @@ const Cart = ({ user }) => {
 
       console.log(json);
       requestToClearCart();
+      placedOrder();
     } else {
       console.log("update the address");
     }
@@ -166,7 +172,7 @@ const Cart = ({ user }) => {
                   <div className="p-1">
                     <div className="flex justify-between">
                       <div>
-                        <h2 className="text-xl w-40 h-10 overflow-hidden ">
+                        <h2 className="text-xl w-40 h-6 overflow-hidden ">
                           {item.product.productName}
                         </h2>
                         <h2 className="text-sm text-gray-500">{item.color}</h2>
@@ -250,6 +256,7 @@ const Cart = ({ user }) => {
       ) : (
         <div>Nothing to show</div>
       )}
+      <ToastContainer position="bottom-right" />
     </>
   );
 };

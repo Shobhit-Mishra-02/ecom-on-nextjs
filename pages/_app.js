@@ -4,6 +4,7 @@ import { UserProvider } from "@auth0/nextjs-auth0";
 import cartStatus from "../components/context";
 import { userProfileStatus } from "../components/context";
 import { useState, useEffect } from "react";
+import "react-toastify/dist/ReactToastify.css";
 
 function MyApp({ Component, pageProps }) {
   const [state, setState] = useState(0);

@@ -2,6 +2,7 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { ToastContainer, toast } from "react-toastify";
 
 const userProfile = ({ user }) => {
   const [details, setDetails] = useState({
@@ -14,6 +15,10 @@ const userProfile = ({ user }) => {
     userPinCode: "",
     userPhoneNumber: "",
   });
+
+  const updatedProfile = () => toast.success("Profile updated");
+
+  const fillWholeForm = () => toast.warning("Fill all entities");
 
   useEffect(() => {
     requestToCheckUser();
@@ -60,8 +65,10 @@ const userProfile = ({ user }) => {
       });
       const json = await data.json();
       console.log(json);
+      updatedProfile();
     } else {
-      console.log("not allowed");
+      fillWholeForm();
+      // console.log("not allowed");
     }
   };
 
@@ -230,6 +237,7 @@ const userProfile = ({ user }) => {
           </button>
         </div>
       </div>
+      <ToastContainer position="bottom-right" />
     </div>
   );
 };

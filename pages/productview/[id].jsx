@@ -4,10 +4,13 @@ import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
 import { useUser } from "@auth0/nextjs-auth0";
 import { useContext } from "react";
 import cartStatus from "../../components/context";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function Productview({ content }) {
   const { user } = useUser();
   const [status, setStatus] = useContext(cartStatus);
+
+  const AddedToCart = () => toast.success("Added to cart");
 
   // states for managing radio buttons
   const [size, setSize] = useState("S");
@@ -49,6 +52,7 @@ export default function Productview({ content }) {
       });
 
       const json = await request.json();
+      AddedToCart();
       console.log(json);
     }
   };
@@ -273,6 +277,7 @@ export default function Productview({ content }) {
           </div>
         </div>
       </div>
+      <ToastContainer position="bottom-right" />
     </>
   );
 }
