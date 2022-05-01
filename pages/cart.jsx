@@ -5,11 +5,13 @@ import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
 import cartStatus from "../components/context";
+import { userProfileStatus } from "../components/context";
 
 const Cart = ({ user }) => {
   const [cartProd, setCartProd] = useState([]);
   const [subTotal, setSubTotal] = useState(1);
   const [status, setStatus] = useContext(cartStatus);
+  const [profileStatus, setProfileStatus] = useContext(userProfileStatus);
 
   useEffect(() => {
     requestToCartProd();
@@ -110,29 +112,33 @@ const Cart = ({ user }) => {
 
   // this will confirm the order
   const confirmOrder = async () => {
-    console.log("clicked");
+    // console.log("clicked");
     let products = [];
     cartProd.forEach((element) => {
       products.push(element.product._id);
     });
 
-    const data = await fetch("/api/db/makeOrder", {
-      method: "POST",
-      body: JSON.stringify({
-        email: user.email,
-        totalAmount: parseInt(subTotal) + 2 + 2,
-        products,
-      }),
-      headers: {
-        "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
-      },
-    });
+    if (profileStatus) {
+      const data = await fetch("/api/db/makeOrder", {
+        method: "POST",
+        body: JSON.stringify({
+          email: user.email,
+          totalAmount: parseInt(subTotal) + 2 + 2,
+          products,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+          // 'Content-Type': 'application/x-www-form-urlencoded',
+        },
+      });
 
-    const json = await data.json();
+      const json = await data.json();
 
-    console.log(json);
-    requestToClearCart();
+      console.log(json);
+      requestToClearCart();
+    } else {
+      console.log("update the address");
+    }
   };
 
   return (

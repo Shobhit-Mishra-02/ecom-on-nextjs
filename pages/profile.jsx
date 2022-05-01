@@ -1,9 +1,9 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 
 const userProfile = ({ user }) => {
-  // eslint-disable-next-line react-hooks/rules-of-hooks
   const [details, setDetails] = useState({
     userFirstName: user.name.split(" ")[0],
     userLastName: user.name.split(" ")[1],
@@ -14,7 +14,35 @@ const userProfile = ({ user }) => {
     userPinCode: "",
     userPhoneNumber: "",
   });
-  // console.log(user);
+
+  useEffect(() => {
+    requestToCheckUser();
+  }, []);
+
+  const requestToCheckUser = async () => {
+    const data = await fetch("/api/db/getUser", {
+      method: "POST",
+      body: JSON.stringify({ userEmail: user.email }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+
+    const json = await data.json();
+    console.log(json);
+
+    if (json.length) {
+      setDetails({
+        ...details,
+        userAddress: json[0].userAddress,
+        userCountry: json[0].userCountry,
+        userCity: json[0].userCity,
+        userPinCode: json[0].userPinCode,
+        userPhoneNumber: json[0].userPhoneNumber,
+      });
+    }
+  };
+
   const onSubmit = async () => {
     if (
       details.userAddress.length &&

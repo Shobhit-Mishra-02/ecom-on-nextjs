@@ -3,8 +3,36 @@ import Slider from "../components/Slider";
 import Card from "../components/Card";
 import CardSection from "../components/CardSection";
 // import Dropdown from "../components/Userdropdown";
+import { userProfileStatus } from "../components/context";
+import { useContext, useEffect } from "react";
+import { useUser } from "@auth0/nextjs-auth0";
 
 export default function Home({ content }) {
+  const { user } = useUser();
+  const [userProfile, setUserProfile] = useContext(userProfileStatus);
+
+  const requestToUserProfile = async () => {
+    const data = await fetch("/api/db/getUser", {
+      method: "POST",
+      body: JSON.stringify({ userEmail: user.email }),
+      headers: {
+        "Content-Type": "application/json",
+        // 'Content-Type': 'application/x-www-form-urlencoded',
+      },
+    });
+    const json = await data.json();
+
+    if (json.length) {
+      setUserProfile(1);
+    }
+  };
+
+  useEffect(() => {
+    if (user) {
+      requestToUserProfile();
+    }
+  }, [user]);
+
   return (
     <div>
       <Head>
