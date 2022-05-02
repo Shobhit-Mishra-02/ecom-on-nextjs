@@ -156,7 +156,11 @@ const Navigation = () => {
                   className="rounded-full"
                 />
               </div>
-              <h2 className="text-center text-sm font-semibold">{user.name}</h2>
+              <h2 className="text-center text-sm font-semibold">
+                <Link href={"/profile"}>
+                  <a>{user.name}</a>
+                </Link>
+              </h2>
             </div>
           )}
           <ul className="flex flex-col space-y-4 pt-5">
@@ -221,6 +225,14 @@ const Navigation = () => {
                 </Link>
               </li>
             )}
+            {user && (
+              <li className="flex px-9 justify-start align-middle items-center">
+                <IdentificationIcon className="mr-2 h-6 w-6" />
+                <Link href={"/profile"}>
+                  <a>Profile</a>
+                </Link>
+              </li>
+            )}
             <li className="flex px-9 justify-start align-middle items-center">
               {user ? (
                 <>
@@ -241,6 +253,11 @@ const Navigation = () => {
                   <Link href={"/api/auth/logout"}>
                     <a>Log out</a>
                   </Link>
+
+                  {/* <li className="flex px-9 justify-start align-middle items-center">
+                    <IdentificationIcon className="mr-2 h-6 w-6" />
+                    Profile
+                  </li> */}
                 </>
               ) : (
                 <>
@@ -263,10 +280,6 @@ const Navigation = () => {
                   </Link>
                 </>
               )}
-            </li>
-            <li className="flex px-9 justify-start align-middle items-center">
-              <IdentificationIcon className="mr-2 h-6 w-6" />
-              Profile
             </li>
           </ul>
         </div>
