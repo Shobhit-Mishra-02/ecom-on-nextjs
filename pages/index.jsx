@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Slider from "../components/Slider";
-import Card from "../components/Card";
+// import Card from "../components/Card";
 import CardSection from "../components/CardSection";
 // import Dropdown from "../components/Userdropdown";
 import { userProfileStatus } from "../components/context";
@@ -53,7 +53,7 @@ export default function Home({ content }) {
 }
 
 export async function getServerSideProps() {
-  const data = await fetch("http://localhost:3000/api/db/category");
+  const data = await fetch(`${process.env.API_URL}/api/db/category`);
   const content = await data.json();
 
   return {

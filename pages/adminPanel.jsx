@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable jsx-a11y/alt-text */
 /* eslint-disable @next/next/no-img-element */
 import { SearchIcon, PlusIcon } from "@heroicons/react/outline";
@@ -384,7 +385,7 @@ const AdminPanel = ({ content }) => {
 };
 
 export async function getServerSideProps() {
-  const categoryData = await fetch("http://localhost:3000/api/db/category");
+  const categoryData = await fetch(`${process.env.API_URL}/api/db/category`);
   const content = await categoryData.json();
 
   return {
