@@ -1,34 +1,72 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# Ecommerce website on Next.js
 
-First, run the development server:
+Recently I have learned next.js which is a full-stack frame work and after doing a lot of work with the next now I have decided to
+develop this project....
+
+So the name of the website is Fashionphile. In this website you 
+can buy latest clothings which are in the trend. The user needs to create 
+an accound to place an order or to add any product in the cart section.
+Also there is a special section for the admin where the admin can add
+or remove products and user can also do the search over the products.
+
+
+
+
+
+
+## Prerequisite
+- Next.js
+- MongoDB Atlas
+- Tailwind css
+- Javascript
+- HTML
+- Auth0
+
+## Features
+
+- User authentication (Auth0)
+- Database (mongoDB Atlas)
+- Cart and Order section
+- Admin panel
+- Search functionality
+
+
+## Run Locally
+
+Clone the project
 
 ```bash
-npm run dev
-# or
-yarn dev
+  git clone https://link-to-project
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Go to the project directory
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```bash
+  cd my-project
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+Install dependencies
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```bash
+  npm install
+```
 
-## Learn More
+Start the server
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+  npm run dev
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Webiste link is here...
 
-## Deploy on Vercel
+Visit the webiste
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+[Fashionphile](https://fashionphile.vercel.app)
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Author
+
+- [@Shobhit-Mishra-02](https://www.github.com/Shobhit-Mishra-02)
+
