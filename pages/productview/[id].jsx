@@ -47,7 +47,6 @@ export default function Productview({ content }) {
         body: JSON.stringify(data),
         headers: {
           "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
 

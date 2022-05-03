@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react-hooks/rules-of-hooks */
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
@@ -68,7 +69,6 @@ const userProfile = ({ user }) => {
       updatedProfile();
     } else {
       fillWholeForm();
-      // console.log("not allowed");
     }
   };
 
