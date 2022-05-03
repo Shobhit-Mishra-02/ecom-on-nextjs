@@ -1,6 +1,9 @@
 import dbConnect from "../../../lib/dbConnect";
 import Cart from "../../../models/Cart";
 
+//Route: /api/db/getCartProd
+//This will give the cart products of the particular user
+
 const handler = async (req, res) => {
   const { method } = req;
 

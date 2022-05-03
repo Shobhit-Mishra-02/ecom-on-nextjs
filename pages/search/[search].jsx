@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import { useEffect } from "react";
 import Card from "../../components/Card";
 
@@ -6,8 +5,6 @@ const SearchSection = ({ content }) => {
   useEffect(() => {
     console.log(content);
   }, [content]);
-
-  // title, price, brand, image, id
 
   return (
     <div className="flex flex-wrap justify-center align-middle items-center pt-20">
@@ -33,13 +30,10 @@ export async function getServerSideProps(context) {
     body: JSON.stringify({ search }),
     headers: {
       "Content-Type": "application/json",
-      // 'Content-Type': 'application/x-www-form-urlencoded',
     },
   });
 
   const content = await data.json();
-
-  // console.log(content);
   return {
     props: { content },
   };

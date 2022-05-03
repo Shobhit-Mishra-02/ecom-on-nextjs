@@ -1,6 +1,9 @@
 import dbConnect from "../../../lib/dbConnect";
 import User from "../../../models/User";
 
+//Route: /api/db/getUser
+//This will get the user details with the email of that particular user in the db.
+
 const handler = async (req, res) => {
   const { method } = req;
 

@@ -32,11 +32,9 @@ const Cart = ({ user }) => {
       }),
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
     const json = await data.json();
-    // console.log(json);
     setCartProd(json);
 
     let temp = 0;
@@ -58,7 +56,6 @@ const Cart = ({ user }) => {
         body: JSON.stringify({ id, quan }),
         headers: {
           "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
       const json = await toIncrement.json();
@@ -72,7 +69,6 @@ const Cart = ({ user }) => {
           body: JSON.stringify({ id, quan }),
           headers: {
             "Content-Type": "application/json",
-            // 'Content-Type': 'application/x-www-form-urlencoded',
           },
         });
         const json = await toDecrement.json();
@@ -90,7 +86,6 @@ const Cart = ({ user }) => {
       body: JSON.stringify({ id }),
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
 
@@ -106,7 +101,6 @@ const Cart = ({ user }) => {
       body: JSON.stringify({ email: user.email }),
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
     const json = await data.json();
@@ -117,7 +111,6 @@ const Cart = ({ user }) => {
 
   // this will confirm the order
   const confirmOrder = async () => {
-    // console.log("clicked");
     let products = [];
     cartProd.forEach((element) => {
       products.push(element.product._id);
@@ -133,7 +126,6 @@ const Cart = ({ user }) => {
         }),
         headers: {
           "Content-Type": "application/json",
-          // 'Content-Type': 'application/x-www-form-urlencoded',
         },
       });
 

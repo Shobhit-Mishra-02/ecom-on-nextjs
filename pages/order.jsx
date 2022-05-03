@@ -1,6 +1,5 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
-import { useUser } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 
 const Orders = () => {
@@ -108,14 +107,5 @@ const Orders = () => {
     </div>
   );
 };
-
-// export async function getServerSideProps() {
-//   const data = await fetch(`${process.env.API_URL}/api/db/makeOrder`);
-//   const content = await data.json();
-
-//   return {
-//     props: { content },
-//   };
-// }
 
 export default Orders;

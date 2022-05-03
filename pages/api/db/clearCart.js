@@ -1,6 +1,9 @@
 import dbConnect from "../../../lib/dbConnect";
 import Cart from "../../../models/Cart";
 
+//Route: /api/db/clearCart
+//This will clear the the cart section for a particular user in the db.
+
 const handler = async (req, res) => {
   const { method } = req;
 

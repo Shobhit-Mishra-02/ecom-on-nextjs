@@ -3,13 +3,8 @@ import { Splide, SplideSlide } from "@splidejs/react-splide";
 import "@splidejs/react-splide/css";
 import "@splidejs/react-splide/css/core";
 import Image from "next/image";
-// import "@splidejs/react-splide/css/skyblue";
 
 const Slider = () => {
-  const myLoader = ({ src, width, quality }) => {
-    return `${src}?w=${width}&q=${quality || 75}`;
-  };
-
   return (
     <Splide aria-label="My Favorite Images">
       <SplideSlide>

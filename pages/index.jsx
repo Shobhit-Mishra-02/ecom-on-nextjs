@@ -1,8 +1,7 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import Head from "next/head";
 import Slider from "../components/Slider";
-// import Card from "../components/Card";
 import CardSection from "../components/CardSection";
-// import Dropdown from "../components/Userdropdown";
 import { userProfileStatus } from "../components/context";
 import { useContext, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
@@ -17,7 +16,6 @@ export default function Home({ content, prodContent, obj }) {
       body: JSON.stringify({ userEmail: user.email }),
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
     });
     const json = await data.json();
@@ -26,9 +24,6 @@ export default function Home({ content, prodContent, obj }) {
       setUserProfile(1);
     }
   };
-
-  // console.log(content, prodContent);
-  console.log(obj);
 
   useEffect(() => {
     if (user) {
@@ -48,9 +43,6 @@ export default function Home({ content, prodContent, obj }) {
         <Slider />
       </div>
 
-      {/* {content.map((item) => (
-        <CardSection key={item._id} id={item._id} name={item.categoryName} />
-      ))} */}
       {Object.keys(obj).map((key) => (
         <CardSection key={key} content={obj[key]} name={key} />
       ))}

@@ -1,6 +1,9 @@
 import dbConnect from "../../../lib/dbConnect";
 import User from "../../../models/User";
 
+//Route: /api/db/addUserProfile
+//This will add the address in the userprofie in the db.
+
 const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();

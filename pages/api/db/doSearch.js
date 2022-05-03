@@ -1,6 +1,9 @@
 import dbConnect from "../../../lib/dbConnect";
 import Prod from "../../../models/Prod";
 
+//Route: /api/db/doSearch
+//This will do a text search basically it will do a search throughout the whole product db.
+
 const handler = async (req, res) => {
   const { method } = req;
 

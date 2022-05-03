@@ -4,7 +4,6 @@
 import { SearchIcon, PlusIcon } from "@heroicons/react/outline";
 import { useState, useEffect } from "react";
 import { useUser } from "@auth0/nextjs-auth0";
-import { useRouter } from "next/router";
 
 const AdminPanel = ({ content }) => {
   const { user } = useUser();
@@ -84,7 +83,6 @@ const AdminPanel = ({ content }) => {
   };
 
   //   the content bellow shows the product details
-
   const [product, setProduct] = useState({});
 
   const requestForProdById = async () => {
@@ -99,7 +97,6 @@ const AdminPanel = ({ content }) => {
   }, [prodID]);
 
   //   the content bellow will delete the product
-
   const requestToRemoveProd = async () => {
     const data = await fetch(`/api/db/deleteById/${prodID}`);
     const json = await data.json();
@@ -108,18 +105,15 @@ const AdminPanel = ({ content }) => {
   };
 
   //   the content bellow will update the product
-
   const requestToUpdateProd = async () => {
     const data = await fetch(`/api/db/updateById/${prodID}`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        // 'Content-Type': 'application/x-www-form-urlencoded',
       },
       body: JSON.stringify(product),
     });
     const json = await data.json();
-    // console.log(product);
 
     requestForProdData();
   };

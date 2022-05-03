@@ -18,7 +18,6 @@ const Navigation = () => {
   };
 
   const onSearch = () => {
-    // console.log("search", search);
     if (search.length) {
       const content = search.replace(" ", "%20");
       router.push(`/search/${content}`);

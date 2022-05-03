@@ -2,6 +2,9 @@ import dbConnect from "../../../lib/dbConnect";
 import Order from "../../../models/Order";
 import { withApiAuthRequired, getSession } from "@auth0/nextjs-auth0";
 
+//Route: /api/db/makeOrder
+//This will make a order or register the order in the db of a particular user.
+
 const handler = async (req, res) => {
   const { method } = req;
   await dbConnect();
