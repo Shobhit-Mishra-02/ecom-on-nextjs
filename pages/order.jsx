@@ -47,8 +47,8 @@ const Orders = () => {
   if (gotData) {
     if (!order.length) {
       return (
-        <div className="h-80">
-          <div className="flex h-full justify-center align-middle items-center text-6xl font-semibold text-gray-500">
+        <div className="pt-36">
+          <div className="text-6xl font-semibold text-gray-500 text-center">
             Make some orders...
           </div>
         </div>

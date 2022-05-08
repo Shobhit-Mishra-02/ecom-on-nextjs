@@ -155,9 +155,8 @@ const Cart = ({ user }) => {
   if (gotData) {
     if (!cartProd.length) {
       return (
-        <div className="w-[100%] h-96 flex justify-center align-middle items-center">
-          {/* <ShoppingCartIcon className="w-32 h-32 text-gray-700 opacity-40" /> */}
-          <div className="flex justify-center align-middle items-center text-5xl font-semibold text-gray-600">
+        <div className="w-[100%] mt-32 flex justify-center align-middle items-center">
+          <div className="text-center text-5xl font-semibold text-gray-600">
             Do some shoping..
           </div>
         </div>
