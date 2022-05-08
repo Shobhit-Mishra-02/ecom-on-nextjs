@@ -3,14 +3,15 @@ const Footer = () => {
   return (
     <div className="mt-28">
       <div>
-        <img src="/uploads/fashionlogo.png" alt="logo" />
-        <p>
+        <div className="flex justify-center align-middle items-center py-2">
+          <img className="w-24 h-24" src="/fashionlogo.png" alt="image" />
+        </div>
+        <p className="text-gray-500">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
           deleniti provident commodi sed ad nesciunt sunt iure voluptatibus
-          sequi. Nisi obcaecati laudantium minus nam harum tempore esse itaque
-          provident molestiae.
+          sequi. Nisi obcaecati
         </p>
-        <div className="flex space-x-2 justify-start align-middle py-3 px-1">
+        <div className="flex space-x-3 justify-start align-middle py-3 px-1 text-gray-600">
           <svg
             width="24"
             height="24"
@@ -62,6 +63,58 @@ const Footer = () => {
               fill="currentColor"
             />
           </svg>
+
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M1.3294 19L0.731323 17.9641L5.06145 15.4641L7.1029 19H1.3294Z"
+              fill="currentColor"
+            />
+            <path
+              d="M15.1858 19H9.4123L5.7935 12.7321L10.1236 10.2321L15.1858 19Z"
+              fill="currentColor"
+            />
+            <path
+              d="M23.2687 19H17.4952L10.8557 7.5L15.1858 5L23.2687 19Z"
+              fill="currentColor"
+            />
+          </svg>
+        </div>
+      </div>
+
+      <div className="">
+        <div className="w-fit flex flex-col space-y-1">
+          <h2 className="pb-2">SOLUTION</h2>
+          <li className="list-none">Marketing</li>
+          <li className="list-none">Analytics</li>
+          <li className="list-none">Commerce</li>
+          <li className="list-none">Insights</li>
+        </div>
+        <div className="w-fit flex flex-col space-y-1">
+          <h2 className="pb-2">COMPANY</h2>
+          <li className="list-none">About</li>
+          <li className="list-none">Blog</li>
+          <li className="list-none">Jobs</li>
+          <li className="list-none">Press</li>
+          <li className="list-none">Partners</li>
+        </div>
+        <div className="w-fit flex flex-col space-y-1">
+          <h2 className="pb-2">SUPPORT</h2>
+          <li className="list-none">Pricing</li>
+          <li className="list-none">Documentation</li>
+          <li className="list-none">Guids</li>
+          <li className="list-none">API Status</li>
+        </div>
+        <div className="w-fit flex flex-col space-y-1">
+          <h2 className="pb-2">LEGAL</h2>
+          <li className="list-none">Claim</li>
+          <li className="list-none">Privacy</li>
+          <li className="list-none">Terms</li>
         </div>
       </div>
     </div>
