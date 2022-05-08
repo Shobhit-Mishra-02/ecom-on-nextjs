@@ -1,5 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import { useState, useEffect } from "react";
+import Spinner from "../components/Spinner";
 import Link from "next/link";
 
 const Orders = () => {
@@ -117,7 +118,9 @@ const Orders = () => {
             </div>
           ))
         ) : (
-          <div>laoding...</div>
+          <div>
+            <Spinner />
+          </div>
         )}
       </div>
     </div>

@@ -5,6 +5,7 @@ import {
   MinusIcon,
   ShoppingCartIcon,
 } from "@heroicons/react/outline";
+import Spinner from "../components/Spinner";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
@@ -271,7 +272,10 @@ const Cart = ({ user }) => {
           </div>
         </div>
       ) : (
-        <div>Loading</div>
+        <div>
+          {" "}
+          <Spinner />
+        </div>
       )}
       <ToastContainer position="bottom-right" />
     </>

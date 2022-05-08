@@ -11,6 +11,7 @@ export default function Productview({ content }) {
   const [status, setStatus] = useContext(cartStatus);
 
   const AddedToCart = () => toast.success("Added to cart");
+  const LoginFirst = () => toast.warn("Log in first");
 
   // states for managing radio buttons
   const [size, setSize] = useState("S");
@@ -52,7 +53,10 @@ export default function Productview({ content }) {
 
       const json = await request.json();
       AddedToCart();
+      setStatus(status + 1);
       console.log(json);
+    } else {
+      LoginFirst();
     }
   };
 
@@ -264,7 +268,6 @@ export default function Productview({ content }) {
             className="bg-blue-500 px-4 py-1 rounded-md font-semibold text-white hover:bg-blue-600 my-5 w-full"
             onClick={() => {
               addToCart();
-              setStatus(status + 1);
             }}
           >
             Add to cart
