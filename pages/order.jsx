@@ -4,11 +4,15 @@ import Link from "next/link";
 
 const Orders = () => {
   const [order, setOrder] = useState([]);
+  const [loading, setLoading] = useState(1);
+  const [gotData, setGotData] = useState(0);
 
   const requestToOrder = async () => {
     const data = await fetch("/api/db/makeOrder");
     const json = await data.json();
     setOrder(json);
+    setLoading(0);
+    setGotData(1);
   };
 
   const convertDate = (string) => {
@@ -40,13 +44,25 @@ const Orders = () => {
     requestToOrder();
   }, []);
 
+  if (gotData) {
+    if (!order.length) {
+      return (
+        <div className="h-80">
+          <div className="flex h-full justify-center align-middle items-center text-6xl font-semibold text-gray-500">
+            Make some orders...
+          </div>
+        </div>
+      );
+    }
+  }
+
   return (
     <div className="py-16">
       <h1 className="text-4xl font-semibold">Order history</h1>
 
       {/* order section  */}
       <div className=" mt-16 divide-y divide-gray-300">
-        {order.length ? (
+        {!loading ? (
           order.map((item) => (
             <div className="py-8" key={item._id}>
               <div className="flex justify-between space-x-5 py-3 sm:justify-start sm:space-x-9">

@@ -1,6 +1,10 @@
 /* eslint-disable @next/next/no-img-element */
 /* eslint-disable react-hooks/exhaustive-deps */
-import { PlusIcon, MinusIcon } from "@heroicons/react/outline";
+import {
+  PlusIcon,
+  MinusIcon,
+  ShoppingCartIcon,
+} from "@heroicons/react/outline";
 import { withPageAuthRequired } from "@auth0/nextjs-auth0";
 import { useEffect, useState } from "react";
 import { useContext } from "react";
@@ -11,6 +15,8 @@ import { ToastContainer, toast } from "react-toastify";
 const Cart = ({ user }) => {
   const [cartProd, setCartProd] = useState([]);
   const [subTotal, setSubTotal] = useState(1);
+  const [loading, setLoading] = useState(1);
+  const [gotData, setGotData] = useState(0);
   const [status, setStatus] = useContext(cartStatus);
   const [profileStatus, setProfileStatus] = useContext(userProfileStatus);
 
@@ -21,6 +27,10 @@ const Cart = ({ user }) => {
 
   const placedOrder = () => {
     toast.success("Order has been placed!");
+  };
+
+  const upateAddress = () => {
+    toast.warn("Add address in the profile");
   };
 
   // here I will make a request to the mongodb to get the cart products of a particular user
@@ -36,6 +46,8 @@ const Cart = ({ user }) => {
     });
     const json = await data.json();
     setCartProd(json);
+    setLoading(0);
+    setGotData(1);
 
     let temp = 0;
     json.forEach((element) => {
@@ -135,13 +147,27 @@ const Cart = ({ user }) => {
       requestToClearCart();
       placedOrder();
     } else {
-      console.log("update the address");
+      // console.log("update the address");
+      upateAddress();
     }
   };
 
+  if (gotData) {
+    if (!cartProd.length) {
+      return (
+        <div className="w-[100%] h-96 flex justify-center align-middle items-center">
+          {/* <ShoppingCartIcon className="w-32 h-32 text-gray-700 opacity-40" /> */}
+          <div className="flex justify-center align-middle items-center text-5xl font-semibold text-gray-600">
+            Do some shoping..
+          </div>
+        </div>
+      );
+    }
+  }
+
   return (
     <>
-      {cartProd.length ? (
+      {!loading ? (
         <div className="mt-12 py-5">
           <h1 className="text-2xl text-center font-semibold py-6 sm:text-3xl xl:text-6xl xl:py-14">
             Shoping Cart
@@ -246,7 +272,7 @@ const Cart = ({ user }) => {
           </div>
         </div>
       ) : (
-        <div>Nothing to show</div>
+        <div>Loading</div>
       )}
       <ToastContainer position="bottom-right" />
     </>
