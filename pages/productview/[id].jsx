@@ -284,35 +284,35 @@ export default function Productview({ content }) {
   );
 }
 
-export async function getStaticPaths() {
-  const data = await fetch(`${process.env.API_URL}/api/db/getAllProdId`);
-  const json = await data.json();
-  const paths = json.map((item) => ({
-    params: { id: item._id },
-  }));
+// export async function getStaticPaths() {
+//   const data = await fetch(`${process.env.API_URL}/api/db/getAllProdId`);
+//   const json = await data.json();
+//   const paths = json.map((item) => ({
+//     params: { id: item._id },
+//   }));
 
-  return {
-    paths,
-    fallback: true,
-  };
-}
+//   return {
+//     paths,
+//     fallback: true,
+//   };
+// }
 
-export async function getStaticProps({ params }) {
-  const data = await fetch(
-    `${process.env.API_URL}/api/db/prodById/${params.id}`
-  );
-  const content = await data.json();
-  return {
-    props: { content },
-  };
-}
-
-// export async function getServerSideProps(context) {
-//   const { id } = context.query;
-//   const data = await fetch(`${process.env.API_URL}/api/db/prodById/${id}`);
+// export async function getStaticProps({ params }) {
+//   const data = await fetch(
+//     `${process.env.API_URL}/api/db/prodById/${params.id}`
+//   );
 //   const content = await data.json();
-
 //   return {
 //     props: { content },
 //   };
 // }
+
+export async function getServerSideProps(context) {
+  const { id } = context.query;
+  const data = await fetch(`${process.env.API_URL}/api/db/prodById/${id}`);
+  const content = await data.json();
+
+  return {
+    props: { content },
+  };
+}

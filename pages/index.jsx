@@ -50,7 +50,7 @@ export default function Home({ content, prodContent, obj }) {
   );
 }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   const data = await fetch(`${process.env.API_URL}/api/db/category`);
   const content = await data.json();
 
