@@ -1,23 +1,24 @@
 /* eslint-disable @next/next/no-img-element */
 const Footer = () => {
   return (
-    <div className="mt-28">
-      <div>
-        <div className="flex justify-center align-middle items-center py-2">
+    <div className="mt-28 border-2 rounded-md p-1 mb-14 shadow-lg md:flex md:flex-row md:flex-wrap md:justify-center lg:justify-evenly md:align-middle md:items-center md:space-x-4">
+      <div className="md:w-64 lg:w-[400px]">
+        <div className="flex justify-center md:justify-start align-middle items-center py-2">
           <img className="w-24 h-24" src="/fashionlogo.png" alt="image" />
         </div>
-        <p className="text-gray-500">
+        <p className="text-gray-500 lg:text-xl">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Voluptates
           deleniti provident commodi sed ad nesciunt sunt iure voluptatibus
           sequi. Nisi obcaecati
         </p>
-        <div className="flex space-x-3 justify-start align-middle py-3 px-1 text-gray-600">
+        <div className="flex space-x-3 justify-center sm:justify-start  align-middle py-6 px-1 text-gray-600">
           <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="lg:w-7 lg:h-7"
           >
             <path
               d="M9.19795 21.5H13.198V13.4901H16.8021L17.198 9.50977H13.198V7.5C13.198 6.94772 13.6457 6.5 14.198 6.5H17.198V2.5H14.198C11.4365 2.5 9.19795 4.73858 9.19795 7.5V9.50977H7.19795L6.80206 13.4901H9.19795V21.5Z"
@@ -30,6 +31,7 @@ const Footer = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="lg:w-7 lg:h-7"
           >
             <path
               fillRule="evenodd"
@@ -55,6 +57,7 @@ const Footer = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="lg:w-7 lg:h-7"
           >
             <path
               fillRule="evenodd"
@@ -70,6 +73,7 @@ const Footer = () => {
             viewBox="0 0 24 24"
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
+            className="lg:w-7 lg:h-7"
           >
             <path
               d="M1.3294 19L0.731323 17.9641L5.06145 15.4641L7.1029 19H1.3294Z"
@@ -87,34 +91,44 @@ const Footer = () => {
         </div>
       </div>
 
-      <div className="">
-        <div className="w-fit flex flex-col space-y-1">
-          <h2 className="pb-2">SOLUTION</h2>
-          <li className="list-none">Marketing</li>
-          <li className="list-none">Analytics</li>
-          <li className="list-none">Commerce</li>
-          <li className="list-none">Insights</li>
-        </div>
-        <div className="w-fit flex flex-col space-y-1">
-          <h2 className="pb-2">COMPANY</h2>
-          <li className="list-none">About</li>
-          <li className="list-none">Blog</li>
-          <li className="list-none">Jobs</li>
-          <li className="list-none">Press</li>
-          <li className="list-none">Partners</li>
-        </div>
-        <div className="w-fit flex flex-col space-y-1">
-          <h2 className="pb-2">SUPPORT</h2>
-          <li className="list-none">Pricing</li>
-          <li className="list-none">Documentation</li>
-          <li className="list-none">Guids</li>
-          <li className="list-none">API Status</li>
-        </div>
-        <div className="w-fit flex flex-col space-y-1">
-          <h2 className="pb-2">LEGAL</h2>
-          <li className="list-none">Claim</li>
-          <li className="list-none">Privacy</li>
-          <li className="list-none">Terms</li>
+      <div className="flex justify-center items-center align-middle md:w-[400px] lg:w-fit">
+        <div className="grid grid-cols-2 text-gray-500 sm:grid-cols-4">
+          <div className="w-fit flex flex-col space-y-1 px-3 md:px-1 py-2 lg:space-x-6">
+            <h2 className="pb-2 font-semibold text-gray-600 lg:text-xl">
+              SOLUTION
+            </h2>
+            <p className="w-fit">Marketing</p>
+            <p className="w-fit">Analytics</p>
+            <p className="w-fit">Commerce</p>
+            <p className="w-fit">Insights</p>
+          </div>
+          <div className="w-fit flex flex-col space-y-1 px-3 py-2 lg:space-x-6">
+            <h2 className="pb-2 font-semibold text-gray-600 lg:text-xl">
+              COMPANY
+            </h2>
+            <li className="list-none">About</li>
+            <li className="list-none">Blog</li>
+            <li className="list-none">Jobs</li>
+            <li className="list-none">Press</li>
+            <li className="list-none">Partners</li>
+          </div>
+          <div className="w-fit flex flex-col space-y-1 px-3 py-2 lg:space-x-6">
+            <h2 className="pb-2 font-semibold text-gray-600 lg:text-xl">
+              SUPPORT
+            </h2>
+            <li className="list-none">Pricing</li>
+            {/* <li className="list-none">Documentation</li> */}
+            <li className="list-none">Guids</li>
+            <li className="list-none">API Status</li>
+          </div>
+          <div className="w-fit flex flex-col space-y-1 px-3 py-2 lg:space-x-6">
+            <h2 className="pb-2 font-semibold text-gray-600 lg:text-xl">
+              LEGAL
+            </h2>
+            <li className="list-none">Claim</li>
+            <li className="list-none">Privacy</li>
+            <li className="list-none">Terms</li>
+          </div>
         </div>
       </div>
     </div>
