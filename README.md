@@ -37,13 +37,13 @@ or remove products and user can also do the search over the products.
 Clone the project
 
 ```bash
-  git clone https://link-to-project
+  git clone https://github.com/Shobhit-Mishra-02/ecom-on-nextjs.git
 ```
 
 Go to the project directory
 
 ```bash
-  cd my-project
+  cd ecom
 ```
 
 Install dependencies
