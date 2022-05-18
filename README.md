@@ -43,7 +43,7 @@ Clone the project
 Go to the project directory
 
 ```bash
-  cd ecom
+  cd ecom-on-nextjs
 ```
 
 Install dependencies
