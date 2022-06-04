@@ -30,6 +30,7 @@ or remove products and user can also do the search over the products.
 - Cart and Order section
 - Admin panel
 - Search functionality
+- Payment gateway
 
 
 ## Run Locally
