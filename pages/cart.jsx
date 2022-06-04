@@ -273,8 +273,9 @@ const Cart = ({ user }) => {
               {onConfirmClick ? (
                 <div>
                   <PaymentButton
-                    setConfirmClick={setConfirmClick}
+                    // setConfirmClick={setConfirmClick}
                     amount={(subTotal + 2 + 2).toString()}
+                    confirmOrder={confirmOrder}
                   />
                 </div>
               ) : (
