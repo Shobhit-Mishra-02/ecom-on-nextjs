@@ -12,6 +12,7 @@ import { useContext } from "react";
 import cartStatus from "../components/context";
 import { userProfileStatus } from "../components/context";
 import { ToastContainer, toast } from "react-toastify";
+import PaymentButton from "../components/PaymentButton";
 
 const Cart = ({ user }) => {
   const [cartProd, setCartProd] = useState([]);
@@ -20,6 +21,7 @@ const Cart = ({ user }) => {
   const [gotData, setGotData] = useState(0);
   const [status, setStatus] = useContext(cartStatus);
   const [profileStatus, setProfileStatus] = useContext(userProfileStatus);
+  const [onConfirmClick, setConfirmClick] = useState(0);
 
   useEffect(() => {
     requestToCartProd();
@@ -264,10 +266,20 @@ const Cart = ({ user }) => {
 
               <button
                 className="px-2 py-1 text-white bg-blue-500 rounded-md w-full"
-                onClick={() => confirmOrder()}
+                onClick={() => setConfirmClick(1)}
               >
                 Confirm order
               </button>
+              {onConfirmClick ? (
+                <div>
+                  <PaymentButton
+                    setConfirmClick={setConfirmClick}
+                    amount={(subTotal + 2 + 2).toString()}
+                  />
+                </div>
+              ) : (
+                <div></div>
+              )}
             </div>
           </div>
         </div>
